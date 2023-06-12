@@ -27,7 +27,8 @@ Eric Bellm
 % \setDocCurator{The Curator of this Document}
 
 \setDocAbstract{%
-The release of the first public alerts from LSSTCam is a major milestone in the execution of the LSST survey.  This document outlines the prerequisites needed for beginning Alert Production.
+Real-time science with LSST will begin with the release of the first public alerts from LSSTCam.
+This document outlines the technical, scientific, and operational prerequisites needed for beginning Alert Production.
 }
 
 % Change history defined here.
@@ -46,8 +47,158 @@ The release of the first public alerts from LSSTCam is a major milestone in the 
 % Frequently for a technote we do not want a title page  uncomment this to remove the title page and changelog.
 % use \mkshorttitle to remove the extra pages
 
-% ADD CONTENT HERE
-% You can also use the \input command to include several content files.
+\section{Introduction}
+
+World-public alerts produced from image differencing and sent to community alert brokers will enable Rubin Observatory's real-time transient, variable, and solar-system science.
+Accordingly, the commencement of routine Alert Production is a key gateway for early community science \citedsp{RTN-011}.
+The Rubin project aims to release high-quality alerts as soon as is feasible.
+Once Alert Production begins, it is expected to continue without interruption through the ten-year duration of the LSST survey.
+
+Because image differencing relies on coadded template images, multiple prior observations in the same area of the sky are necessary to generate alerts at that position.
+Throughout commissioning and the first year of the LSST survey we plan to build up templates incrementally as the data quality and availability allow \citedsp{RTN-011}.
+The volume of alerts produced each night will thus scale up gradually with template availability.
+We must balance generating templates and alerts as early as possible (to provide lengthy lightcurves and early followup) with providing larger volumes of higher quality alerts later (by building deeper, better sampled templates with fewer artifacts).
+
+Necessarily, there will be a night on which the very first LSST alerts are released. 
+As this is likely to occur during the fluid period of commissioning but begins a long-term operational campaign, this document aims to specify gateway criteria for beginning Alert Production.
+Its goal to to aid Project planning and decisionmaking while clarifying expectations for community scientists and our alert broker partners.
+
+% cites: LDM-612, early science paper, SFL milestone, ...
+
+
+\section{Technical Prerequisites}
+
+We begin by describing at a high level the major technical capabilities required for routine Alert Production.
+For operational efficiency, we do not intend to release significant amounts of ``alert'' data outside of the normal Alert Production process.
+
+\subsection{Science Pipelines}
+
+Alert production begins with pipeline software which differences new science images against coadded templates and associates the resulting DIASources against static DIAObjects as well as Solar System Objects (SSObjects).
+
+% incl SSP association
+
+\subsection{Prompt Processing and the USDF}
+
+The Science Pipelines payloads should be executed by the automated real-time Prompt Processing framework at the USDF.
+
+\subsection{APDB and PPDB}
+
+Realtime association of DIASources to DIAObjects and SSObjects requires a high-performance database, the Alert Production Database (APDB).
+Records from the APDB must be replicated to a user-facing Prompt Processing Database (PPDB) \citedsp{DMTN-268}.
+
+\subsection{Alert Archive}
+
+All transmitted alerts should be archived at the USDF \citedsp{DMTN-183}.
+
+\subsection{Broker Connectivity}
+
+All selected broker teams \citedsp{LDM-612} should have had the opportunity to test connectivity to the production Alert Distribution system \citedsp{RTN-010}.
+
+\subsection{Alert Latency}
+
+% todo: use the requirements macro
+While Rubin has high-level requirements on alert latency \citedsp{LPM-17}, achieving 60- or 120-second alert latency is \textit{not} a prerequisite to begin routine alert production.
+Instead, the gating requirement should be that the processing be fast enough that alert production will not saturate the available computational resources in Prompt Processing for the data expected.
+We expect to continue improving alert latency on an ongoing basis thereafter.
+
+\subsection{Catchup Processing and Error Handling}
+
+While Alert Production should proceed in an automated fashion throughout the night, the operations team should have the capability both to manually reprocess failed data and to deprecate bad records.
+
+
+\subsection{Data Embargo}
+
+While alerts are a world-public data product \citedsp{RDO-013}, other products produced by Prompt Processing are subject to embargo.
+Full implementation of the measures described in \citedsp{DMTN-199} is necessary to begin Alert Production.
+
+\subsection{Rubin Science Platform}
+% is this the first "all DR holders" release, if it is ahead of DP1?
+Subject to the embargo restrictions described above, image and catalog products from Prompt Processing should be delivered to users in the Rubin Science Platform \citedsp{DMTN-105}.
+
+
+
+\section{Scientific Prerequisites}
+
+Scientists worldwide will expect Rubin's alerts to be of high quality.
+In the interest of enabling as much early science as possible, we intend to begin alert production before all performance requirements are formally verified.  
+Nevertheless, some broad analysis of scientific reliability in advance of the first alerts will be necessary to provide appropriate guidance to science users.
+
+% requirements exist, we need not have verified but we should have run the tests over the area where templates are being produced
+% don't have to be rully ready in all areas (eg Plane)
+
+It may be that Alert Production may be possible in some sky regions (e.g., the extragalactic Wide-Fast-Deep footprint) but not in others (e.g., in densely crowded fields).
+We would begin routine Alert Production in the regions deemed sufficiently scientifically useful while continuing to improve pipeline performance elsewhere.
+
+
+\subsection{Systematics and Artifacts}
+
+% may exist; notification channels for brokers and scientific users to both send and receive reports (community.lsst.org)
+
+Known systematics and artifacts may be present in the data at the time of the first alert release.
+These should be documented for science users and updated on an ongoing basis, for example on \url{community.lsst.org}.
+Similarly, users should be encouraged to report artifacts and other problems identified in alerts through the same channels.
+
+\subsection{Alert Completeness and Purity}
+
+Alerts need not be complete or pure at the required levels in order to begin alert production.
+However, alerts due to artifacts must not occur in such high volumes as to degrade the performance of alert production and distribution.
+Filtering operations which reduce the completeness of released alerts but increase purity may be considered.
+
+
+\subsection{Machine-Learned Reliability Scoring}
+
+Machine-learned scores for estimating whether a DIASource is astrophysical should be available along with documentation of the estimated performance of the implemented classifier.  
+Again, this classifier need not fully meet requirements at the time of the first alert release.
+
+\subsection{Photometric and Astrometric Accuracy}
+
+% requirements exist, again we need not have verified but we should have run the tests over the area where templates are being produced
+
+Estimates of photometric and astrometric accuracy should be available for all regions where alert production is underway, even if the resulting difference image products do not yet meet formal requirements.
+
+\section{Operational Prerequisites}
+
+Finally, before beginning a decade-long continuous data processing campaign we must be prepared organizationally.
+
+\subsection{Change Control}
+
+A well-defined process must be in place to deploy pipelines and calibration updates affecting the scientific content of alert production.
+
+\subsection{Incremental Template Generation Procedures}
+
+A procedure for regularly generating, validating, and loading templates for Alert Production should be established prior to the beginning of routine alert production.
+
+\subsection{Broker and User Support Channels}
+
+Broker operations teams should have access to alert distribution status information as well as communications channels to request support.
+
+Science users should be directed to \url{community.lsst.org} for support.
+The Rubin Community Science Team should be prepared to triage support requests as alert production begins.
+
+
+\subsection{Documentation}
+
+User-facing documentation describing the Alert Production pipelines, data products, data services, and broker options should be available.
+A peer-reviewed construction paper need not be published to begin alert production, but a draft should be in Publication Board review.
+
+\subsection{Dress Rehearsal}
+
+We plan to conduct one or more dress rehearsals for alert distribution to brokers ahead of beginning routine alert production \citedsp{RTN-010}.
+
+\subsection{Agency Approval}
+
+We expect to seek formal agency approval to begin releasing alerts.
+
+\subsection{Communications}
+
+The onset of alert production should be marked with a Rubin press release organized by the project office.
+
+\section{Expected Timeline}
+
+Based on the availability of both data and personnel, we expect that the release of the first alerts and the beginning of routine Alert Production will occur after the System First Light (SFL) milestone \citedsp{SITCOMTN-061}. 
+We hope to begin around the time of the commissioning Science Validation Surveys, but a later start remains possible.
+
+
 
 \appendix
 % Include all the relevant bib files.
