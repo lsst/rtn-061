@@ -27,7 +27,8 @@ Eric Bellm
 % \setDocCurator{The Curator of this Document}
 
 \setDocAbstract{%
-The release of the first public alerts from LSSTCam is a major milestone in the execution of the LSST survey.  This document outlines the prerequisites needed for beginning Alert Production.
+Real-time science with LSST will begin with the release of the first public alerts from LSSTCam.
+This document outlines the technical, scientific, and operational prerequisites needed for beginning Alert Production.
 }
 
 % Change history defined here.
@@ -46,8 +47,87 @@ The release of the first public alerts from LSSTCam is a major milestone in the 
 % Frequently for a technote we do not want a title page  uncomment this to remove the title page and changelog.
 % use \mkshorttitle to remove the extra pages
 
-% ADD CONTENT HERE
-% You can also use the \input command to include several content files.
+\section{Introduction}
+
+World-public alerts produced from image differencing and sent to community alert brokers will enable Rubin Observatory's real-time transient, variable, and solar-system science.
+Accordingly, the commencement of routine Alert Production is a key gateway for early community science \citedsp{RTN-011}.
+The Rubin project aims to release high-quality alerts as soon as is feasible.
+Once Alert Production begins, it is expected to continue without interruption through the ten-year duration of the LSST survey.
+
+Because image differencing relies on coadded template images, multiple prior observations in the same area of the sky are necessary to generate alerts at that position.
+Throughout commissioning and the first year of the LSST survey we plan to build up templates incrementally as the data quality and availability allow \citedsp{RTN-011}.
+The volume of alerts produced each night will thus scale up gradually with template availability.
+We must balance generating templates and alerts as early as possible (to provide lengthy lightcurves and early followup) with providing larger volumes of higher quality alerts later (by building deeper, better sampled templates with fewer artifacts).
+
+Necessarily, there will be a night on which the very first LSST alerts are released. 
+As this is likely to occur during the fluid period of commissioning but begins a long-term operational campaign, this document aims to specify gateway criteria for beginning Alert Production.
+Its goal to to aid Project planning and decisionmaking while clarifying expectations for community scientists and our alert broker partners.
+
+% cites: LDM-612, early science paper, SFL milestone, ...
+
+
+\section{Technical Prerequisites}
+
+We begin by describing at a high level the major technical capabilities required for routine Alert Production.
+For operational efficiency, we do not intend to release significant amounts of ``alert'' data outside of the normal Alert Production process.
+
+\subsection{Alert Latency}
+
+\subsection{Alert Archive}
+
+\subsection{Rubin Science Platform}
+% is this the first "all DR holders" release, if it is ahead of DP1?
+
+\subsection{Broker Connectivity}
+
+\section{Scientific Prerequisites}
+
+Scientists worldwide will expect Rubin's alerts to be of high quality.
+In the interest of enabling as much early science as possible, we intend to begin alert production before all performance requirements are formally verified.  
+Nevertheless, some broad analysis of scientific reliability in advance of the first alerts will be necessary to provide appropriate guidance to science users.
+
+% requirements exist, we need not have verified but we should have run the tests over the area where templates are being produced
+% don't have to be rully ready in all areas (eg Plane)
+
+\subsection{Alert Completeness and Purity}
+
+
+\subsection{Machine-Learned Reliability Scoring}
+
+\subsection{Photometric and Astrometric Accuracy}
+
+% requirements exist, again we need not have verified but we should have run the tests over the area where templates are being produced
+
+\subsection{Systematics and Artifacts}
+
+\section{Operational Prerequisites}
+
+Finally, before beginning a decade-long continuous data processing campaign we must be prepared organizationally.
+
+\subsection{}
+
+\subsection{Change Control Board}
+
+\subsection{Incremental Template Generation Procedures}
+
+\subsection{Documentation}
+
+% AP construction paper...
+
+\subsection{Broker and User Support Channels}
+
+\subsection{Communications}
+
+\subsection{Dress Rehearsal}
+
+% go/no-go
+
+\section{Expected Timeline}
+
+Based on the availability of both data and personnel, we expect that the release of the first alerts and the beginning of routine Alert Production will occur sometime after the System First Light (SFL) milestone \citedsp{SITCOMTN-061}.
+Absent major data reduction systematics or other technical challenges, we expect the planned commissioning surveys to provide sufficient data for high-quality templates and alert production over a limited sky area beginning prior to Data Preview 1 (DP1) \citedsp{RTN-011}.
+
+
 
 \appendix
 % Include all the relevant bib files.
