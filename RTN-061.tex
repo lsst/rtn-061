@@ -60,22 +60,16 @@ The volume of alerts produced each night will thus scale up gradually with templ
 We must balance generating templates and alerts as early as possible (to provide lengthy lightcurves and early followup) with providing larger volumes of higher quality alerts later (by building deeper, better sampled templates with fewer artifacts).
 
 Necessarily, there will be a night on which the very first LSST alerts are released. 
-As this is likely to occur during the fluid period of commissioning but begins a long-term operational campaign, this document aims to specify gateway criteria for beginning Alert Production.
-Its goal to to aid Project planning and decisionmaking while clarifying expectations for community scientists and our alert broker partners.
-
-% cites: LDM-612, early science paper, SFL milestone, ...
-
+As this is likely to occur during the fluid period of commissioning and begins a long-term operational campaign, this document aims to specify gateway criteria for beginning Alert Production.
+Its goal is to aid Project planning and decisionmaking while clarifying expectations for community scientists and our alert broker partners.
 
 \section{Technical Prerequisites}
 
 We begin by describing at a high level the major technical capabilities required for routine Alert Production.
-For operational efficiency, we do not intend to release significant amounts of ``alert'' data outside of the normal Alert Production process.
 
 \subsection{Science Pipelines}
 
 Alert production begins with pipeline software which differences new science images against coadded templates and associates the resulting DIASources against static DIAObjects as well as Solar System Objects (SSObjects).
-
-% incl SSP association
 
 \subsection{Prompt Processing and the USDF}
 
